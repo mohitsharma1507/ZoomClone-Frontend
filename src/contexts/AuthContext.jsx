@@ -4,7 +4,7 @@ import React, { createContext } from "react";
 export const AuthContext = createContext({});
 
 const client = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL || "http://localhost:8000"}`,
+  baseURL: `${import.meta.env.VITE_API_URL}`,
   withCredentials: true,
 });
 

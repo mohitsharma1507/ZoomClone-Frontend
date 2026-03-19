@@ -15,7 +15,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
-const server_url = `${import.meta.env.VITE_API_URL || "http://localhost:8000"}`;
+const server_url = `${import.meta.env.VITE_API_URL}`;
 const peerConfigConnections = {
   iceServers: [
     { urls: "stun:stun.l.google.com:19302" },
