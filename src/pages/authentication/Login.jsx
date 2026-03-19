@@ -64,7 +64,7 @@ const Login = () => {
     }
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/login",
+        `${import.meta.env.VITE_API_URL || "http://localhost:8000"}/login`,
         {
           ...inputValue,
         },

@@ -10,7 +10,7 @@ export default function LandingPage() {
     <div className="landingContainer">
       <nav>
         <div className="navHeader">
-          <h2> Zoom Video Call</h2>
+          <h2> Meetify</h2>
         </div>
         <div className="navList">
           <p
@@ -45,7 +45,7 @@ export default function LandingPage() {
             <span style={{ color: "orangered" }}>Connect</span> with your loved
             Ones
           </h1>
-          <p>Cover a distance by Zoom Video Call</p>
+          <p>Cover a distance by Meetify Video Call</p>
           <div role="button">
             <Link to={"/register"}> Get Started</Link>
           </div>

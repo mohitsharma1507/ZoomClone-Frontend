@@ -23,7 +23,7 @@ function Home() {
     <>
       <div className="navbar">
         <div style={{ display: "flex", alignItems: "center" }}>
-          <h2 style={{ fontWeight: "bold" }}>Zoom Video Call</h2>
+          <h2 style={{ fontWeight: "bold" }}>Meetify</h2>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
           <div className="historyBtn" onClick={goToHistory}>

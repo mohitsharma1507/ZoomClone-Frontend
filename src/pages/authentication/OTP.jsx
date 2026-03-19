@@ -80,13 +80,18 @@ function OTPVerification() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post("http://localhost:8080/verify-otp", {
-        email,
-        otp: otpString,
-      });
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL || "http://localhost:8000"}/verify-otp`,
+        {
+          email,
+          otp: otpString,
+        },
+      );
 
       if (data.verified) {
-        toast.success("OTP verified successfully!", { position: "bottom-right" });
+        toast.success("OTP verified successfully!", {
+          position: "bottom-right",
+        });
         setTimeout(() => {
           navigate("/login");
         }, 1500);
@@ -127,9 +132,7 @@ function OTPVerification() {
         <div className="otp-icon">✉️</div>
 
         <h1>Verify Your Email</h1>
-        <p className="otp-subtitle">
-          We've sent a 6-digit OTP to
-        </p>
+        <p className="otp-subtitle">We've sent a 6-digit OTP to</p>
         <p className="otp-email">{email}</p>
 
         {/* OTP Input Boxes */}
@@ -156,11 +159,7 @@ function OTPVerification() {
           onClick={handleVerify}
           disabled={loading || otp.join("").length !== 6}
         >
-          {loading ? (
-            <span className="spinner"></span>
-          ) : (
-            "Verify OTP"
-          )}
+          {loading ? <span className="spinner"></span> : "Verify OTP"}
         </button>
 
         {/* Resend */}
