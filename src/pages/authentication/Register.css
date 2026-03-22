@@ -1,5 +1,3 @@
-
-
 /* Register Container */
 .register-container {
   min-height: 100vh;
@@ -33,7 +31,6 @@
   }
 }
 
-
 /* Image Section */
 .register-image-section {
   flex: 1;
@@ -58,12 +55,8 @@
 }
 
 @keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .register-image-section img {
@@ -77,12 +70,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
 /* Form Section */
@@ -93,6 +82,30 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+}
+
+/* ── BACK BUTTON — Desktop: absolute top-left ── */
+.back-btn {
+  position: absolute;
+  top: 23px;
+  left: 20px;
+  background: none;
+  border: none;
+  color: #ff6347;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+.back-btn:hover {
+  color: #ff4500;
+  transform: translateX(-3px);
+  background: rgba(255, 99, 71, 0.08);
 }
 
 .register-header {
@@ -174,18 +187,10 @@
 }
 
 @keyframes shake {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-5px);
-  }
-  75% {
-    transform: translateX(5px);
-  }
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
-
-
 
 /* Submit Button */
 .submit-btn {
@@ -212,22 +217,6 @@
   transform: translateY(-1px);
 }
 
-.back-btn {
-  position: absolute;
-  top: 23px;
-  left: 20px;
-  background: none;
-  border: none;
-  color: #ff6347;
-  font-size: 18px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.back-btn:hover {
-  color: #ff4500;
-  transform: translateX(-3px);
-}
 /* Login Link */
 .login-link {
   text-align: center;
@@ -248,7 +237,7 @@
   text-decoration: underline;
 }
 
-/* Responsive Design */
+/* ── TABLET ── */
 @media (max-width: 968px) {
   .register-wrapper {
     flex-direction: column;
@@ -272,6 +261,7 @@
   }
 }
 
+/* ── MOBILE ── */
 @media (max-width: 640px) {
   .register-container {
     padding: 1rem;
@@ -283,15 +273,23 @@
 
   .register-image-section {
     padding: 1.5rem;
-    min-height: 250px;
+    min-height: 200px;
   }
 
   .register-image-section img {
-    max-width: 200px;
+    max-width: 180px;
   }
 
+  /* ── KEY FIX: mobile pe back button absolute nahi, normal flow mein ── */
   .register-form-section {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.5rem 2rem;
+  }
+
+  .back-btn {
+    position: static;         /* absolute hata diya */
+    margin-bottom: 1rem;      /* heading se thoda gap */
+    padding: 4px 6px;
+    align-self: flex-start;   /* left side pe rahe */
   }
 
   .register-header h1 {
@@ -313,11 +311,7 @@
   }
 }
 
-
-
-
-
-/* Toast Container Customization */
+/* Toast Customization */
 .Toastify__toast {
   border-radius: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -330,5 +324,3 @@
 .Toastify__toast--error {
   background: linear-gradient(135deg, #fc8181 0%, #f56565 100%);
 }
-
-
