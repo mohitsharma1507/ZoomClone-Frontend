@@ -1,3 +1,22 @@
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: #ff6347;
+}
+
 /* Register Container */
 .register-container {
   min-height: 100vh;
@@ -181,23 +200,7 @@
   }
 }
 
-.back-btn {
-  background: none;
-  border: none;
-  color: #aaa;
-  font-size: 13px;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 1.2rem;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: color 0.2s;
-}
 
-.back-btn:hover {
-  color: #ff6347;
-}
 
 /* Submit Button */
 .submit-btn {
