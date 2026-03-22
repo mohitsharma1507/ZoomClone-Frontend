@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Registers from "../../assets/Register.png";
 import { FaArrowLeft } from "react-icons/fa";
+import { VscChevronLeft } from "react-icons/vsc";
 import "./Register.css";
 
 function Register() {
