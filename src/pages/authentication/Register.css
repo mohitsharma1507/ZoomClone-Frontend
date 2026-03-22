@@ -277,12 +277,8 @@
     justify-content: flex-start;
   }
 
-  /* 
-    ACTUAL FIX:
-    Mobile pe back-btn ko upar image section ke corner mein shift karo
-    ya phir form-section ke andar top pe fix raho — 
-    isliye position: absolute rakho lekin top/left mobile values pe reset karo
-  */
+  
+  
   .back-btn {
     top: 12px;
     left: 12px;
@@ -290,7 +286,7 @@
     padding: 5px 7px;
   }
 
-  /* Header pe top padding do taaki back button se overlap na ho */
+  
   .register-header {
     margin-top: 2.5rem;
     margin-bottom: 1.5rem;
