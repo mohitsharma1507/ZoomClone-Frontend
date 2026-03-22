@@ -83,7 +83,10 @@ const Login = () => {
         handleError(message);
       }
     } catch (error) {
-      console.log(error);
+      const message =
+        error.response?.data?.message ||
+        "Something went wrong. Please try again.";
+      handleError(message);
     }
     setInputValue({
       ...inputValue,
