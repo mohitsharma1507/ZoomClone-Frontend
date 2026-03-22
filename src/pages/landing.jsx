@@ -60,6 +60,7 @@
 import React, { useState } from "react";
 import "../App.css";
 import MobilePhoto from "../assets/mobile.png";
+import BgImage from "../assets/background.png";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
@@ -67,7 +68,15 @@ export default function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="landingContainer">
+    <div
+      className="landingContainer"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${BgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <nav>
         <div className="navHeader">
           <h2>Meetify</h2>

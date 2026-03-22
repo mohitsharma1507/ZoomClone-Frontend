@@ -95,7 +95,7 @@ function Register() {
     });
   };
   const handleBack = () => {
-    navigate("/landing");
+    navigate("/");
   };
 
   return (
@@ -106,6 +106,9 @@ function Register() {
         </div>
 
         <div className="register-form-section">
+          <button className="back-btn" onClick={handleBack}>
+            ← Back
+          </button>
           <div className="register-header">
             <h1>Register Now</h1>
             <p>Join us and start connecting with your loved ones</p>
@@ -162,10 +165,6 @@ function Register() {
                 <span className="error-message">{errors.password}</span>
               )}
             </div>
-
-            <button type="button" className="back-btn" onClick={handleBack}>
-              ← Back
-            </button>
 
             <button type="submit" className="submit-btn">
               Create Account

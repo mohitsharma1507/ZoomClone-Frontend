@@ -184,11 +184,11 @@
 .back-btn {
   background: none;
   border: none;
-  color: #555;
-  font-size: 14px;
+  color: #aaa;
+  font-size: 13px;
   cursor: pointer;
   padding: 0;
-  margin-bottom: 12px;
+  margin-bottom: 1.2rem;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -196,7 +196,7 @@
 }
 
 .back-btn:hover {
-  color: #000;
+  color: #ff6347;
 }
 
 /* Submit Button */

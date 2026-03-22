@@ -92,7 +92,7 @@ const Login = () => {
   };
 
   const handleBack = () => {
-    navigate("/landing");
+    navigate("/");
   };
 
   return (
