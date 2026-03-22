@@ -181,6 +181,24 @@
   }
 }
 
+.back-btn {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: #000;
+}
+
 /* Submit Button */
 .submit-btn {
   width: 100%;

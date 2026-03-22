@@ -94,6 +94,10 @@ function Register() {
       username: "",
     });
   };
+  const handleBack = () => {
+    navigate("/landing");
+  };
+
   return (
     <div className="register-container">
       <div className="register-wrapper">
@@ -158,6 +162,10 @@ function Register() {
                 <span className="error-message">{errors.password}</span>
               )}
             </div>
+
+            <button type="button" className="back-btn" onClick={handleBack}>
+              ← Back
+            </button>
 
             <button type="submit" className="submit-btn">
               Create Account

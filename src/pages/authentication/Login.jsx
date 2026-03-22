@@ -91,6 +91,10 @@ const Login = () => {
     });
   };
 
+  const handleBack = () => {
+    navigate("/landing");
+  };
+
   return (
     <div className="login-container">
       <div className="login-wrapper">
@@ -134,6 +138,10 @@ const Login = () => {
                 <span className="error-message">{errors.password}</span>
               )}
             </div>
+
+            <button type="button" className="back-btn" onClick={handleBack}>
+              ← Back
+            </button>
 
             <button type="submit" className="submit-btn">
               Login

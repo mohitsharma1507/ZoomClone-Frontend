@@ -732,7 +732,12 @@ export default function VideoMeetComponent() {
           {showModal && (
             <div className="chatRoom">
               <div className="chatContainer">
-                <h1>Chats</h1>
+                <div className="chatHeader">
+                  <h1>Chats</h1>
+                  <button className="closeChatBtn" onClick={toggleChat}>
+                    ✕
+                  </button>
+                </div>
                 <div className="chatDisplay">
                   {messages.length > 0 ? (
                     messages.map((item, idx) => {

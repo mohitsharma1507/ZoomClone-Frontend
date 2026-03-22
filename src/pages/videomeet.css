@@ -239,7 +239,7 @@ body {
   padding: 1.5rem;
 }
 
-.chatContainer h1 {
+/* .chatContainer h1 {
   font-size: 1.8rem;
   font-weight: 700;
   color: #2d3748;
@@ -250,8 +250,41 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+} */
+.chatHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
 }
 
+.chatHeader h1 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.closeChatBtn {
+  background: #f5f5f5;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.closeChatBtn:hover {
+  background: #ff6347;
+  color: white;
+}
 .chatDisplay {
   flex: 1;
   overflow-y: auto;
