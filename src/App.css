@@ -23,6 +23,7 @@ nav {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(10px);
   position: relative;
+  flex-wrap: wrap;
 }
 
 .navHeader h2 {
@@ -99,7 +100,7 @@ nav {
   height: 2px;
   background: white;
   border-radius: 2px;
-  transition: 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 /* ── HERO ── */
@@ -138,10 +139,41 @@ nav {
   margin-bottom: 2rem;
 }
 
+/* ── INPUT ROW ── */
+.inputRow {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.inputRow input {
+  padding: 0.75rem 1.2rem;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 99, 71, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  width: 240px;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.25s;
+}
+
+.inputRow input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.inputRow input:focus {
+  border-color: #ff6347;
+}
+
 .ctaButton {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(135deg, #ff6347, #ff4500);
-  padding: 1rem 2.4rem;
+  padding: 0.75rem 2rem;
   border-radius: 30px;
   cursor: pointer;
   box-shadow: 0 8px 25px rgba(255, 99, 71, 0.4);
@@ -153,10 +185,11 @@ nav {
   box-shadow: 0 14px 35px rgba(255, 99, 71, 0.6);
 }
 
+.ctaButton span,
 .ctaButton a {
   text-decoration: none;
   color: white;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -198,15 +231,14 @@ nav {
 @media (max-width: 768px) {
   nav {
     padding: 1rem 1.5rem;
-    flex-wrap: wrap;
   }
 
-  /* Hamburger dikhega */
+  
   .hamburger {
     display: flex;
   }
 
-  /* Nav links by default chuppe rahenge */
+  
   .navList {
     display: none;
     flex-direction: column;
@@ -218,7 +250,7 @@ nav {
     margin-top: 0.5rem;
   }
 
-  /* Jab open ho */
+
   .navList.navOpen {
     display: flex;
   }
@@ -235,7 +267,7 @@ nav {
     padding: 0.65rem 1rem;
   }
 
-  /* Hero stack ho jata hai */
+  /* Hero stack */
   .landingMainContainer {
     flex-direction: column-reverse;
     padding: 2rem 1.5rem;
@@ -255,8 +287,19 @@ nav {
     font-size: 1rem;
   }
 
+  /* Input row center on mobile */
+  .inputRow {
+    justify-content: center;
+  }
+
+  .inputRow input {
+    width: 100%;
+    max-width: 320px;
+  }
+
   .ctaButton {
-    margin: 0 auto;
+    width: 100%;
+    max-width: 320px;
   }
 
   .heroImage img {

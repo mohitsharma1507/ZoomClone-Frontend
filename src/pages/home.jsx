@@ -7,12 +7,15 @@ import Photo from "../assets/logo3.png";
 function Home() {
   const navigate = useNavigate();
   const [meetingCode, setMeetingCode] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
   const { addToUserHistory } = useContext(AuthContext);
 
   const handleJoinVideoCall = async () => {
     await addToUserHistory(meetingCode);
     navigate(`/${meetingCode}`);
   };
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <div className="landingContainer">
@@ -22,13 +25,50 @@ function Home() {
           <h2>Meetify</h2>
         </div>
 
-        <div className="navList">
-          <p onClick={() => navigate("/history")}>⏱ History</p>
+        {/* Hamburger Button */}
+        <button
+          className="hamburger"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label="Toggle menu"
+        >
+          <span
+            style={{
+              transform: menuOpen
+                ? "rotate(45deg) translate(5px, 5px)"
+                : "none",
+            }}
+          />
+          <span
+            style={{
+              opacity: menuOpen ? 0 : 1,
+              transform: menuOpen ? "scaleX(0)" : "none",
+            }}
+          />
+          <span
+            style={{
+              transform: menuOpen
+                ? "rotate(-45deg) translate(5px, -5px)"
+                : "none",
+            }}
+          />
+        </button>
+
+        {/* Nav Links */}
+        <div className={`navList ${menuOpen ? "navOpen" : ""}`}>
+          <p
+            onClick={() => {
+              navigate("/history");
+              closeMenu();
+            }}
+          >
+            ⏱ History
+          </p>
           <div
             role="button"
             onClick={() => {
               localStorage.removeItem("token");
               navigate("/");
+              closeMenu();
             }}
           >
             <p>Logout</p>
@@ -49,35 +89,16 @@ function Home() {
           </p>
 
           {/* Input Row */}
-          <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
+          <div className="inputRow">
             <input
               type="text"
               placeholder="Enter Meeting Code"
               value={meetingCode}
               onChange={(e) => setMeetingCode(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleJoinVideoCall()}
-              style={{
-                padding: "0.75rem 1.2rem",
-                borderRadius: "12px",
-                border: "1.5px solid rgba(255,99,71,0.4)",
-                background: "rgba(255,255,255,0.08)",
-                color: "white",
-                fontSize: "1rem",
-                outline: "none",
-                width: "240px",
-                backdropFilter: "blur(4px)",
-              }}
             />
-            <div
-              className="ctaButton"
-              onClick={handleJoinVideoCall}
-              style={{ padding: "0.75rem 2rem" }}
-            >
-              <span
-                style={{ color: "white", fontWeight: 600, fontSize: "1rem" }}
-              >
-                JOIN
-              </span>
+            <div className="ctaButton" onClick={handleJoinVideoCall}>
+              <span>JOIN</span>
             </div>
           </div>
         </div>
