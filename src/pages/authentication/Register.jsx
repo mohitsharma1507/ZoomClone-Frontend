@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Registers from "../../assets/Register.png";
+import { FaArrowLeft } from "react-icons/fa";
 import "./Register.css";
 
 function Register() {
@@ -107,7 +108,7 @@ function Register() {
 
         <div className="register-form-section">
           <button className="back-btn" onClick={handleBack}>
-            ← Back
+            <FaArrowLeft />
           </button>
           <div className="register-header">
             <h1>Register Now</h1>

@@ -1,22 +1,4 @@
-.back-btn {
-  background: none;
-  border: none;
-  color: #4a5568; /* darker */
-  font-size: 15px; /* thoda bada */
-  font-weight: 500;
-  cursor: pointer;
-  margin-bottom: 1.5rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  align-self: flex-start; /* IMPORTANT */
-  transition: all 0.2s ease;
-}
 
-.back-btn:hover {
-  color: #ff4500;
-  transform: translateX(-3px);
-}
 
 /* Register Container */
 .register-container {
@@ -50,6 +32,7 @@
     transform: translateY(0);
   }
 }
+
 
 /* Image Section */
 .register-image-section {
@@ -313,6 +296,27 @@
   }
 }
 
+.back-btn {
+  background: none;
+  border: none;
+  color: #ff6347;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.back-btn:hover {
+  color: #ff4500;
+  text-decoration: underline;
+}
+
 /* Toast Container Customization */
 .Toastify__toast {
   border-radius: 10px;
@@ -326,3 +330,5 @@
 .Toastify__toast--error {
   background: linear-gradient(135deg, #fc8181 0%, #f56565 100%);
 }
+
+

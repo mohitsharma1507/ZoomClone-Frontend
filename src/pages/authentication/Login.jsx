@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "./Login.css";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -99,6 +100,9 @@ const Login = () => {
     <div className="login-container">
       <div className="login-wrapper">
         <div className="login-card">
+          <button type="button" className="back-btn" onClick={handleBack}>
+            <FaArrowLeft />
+          </button>
           <div className="login-header">
             <h1>Welcome Back</h1>
             <p>Login to continue your journey</p>
@@ -138,10 +142,6 @@ const Login = () => {
                 <span className="error-message">{errors.password}</span>
               )}
             </div>
-
-            <button type="button" className="back-btn" onClick={handleBack}>
-              ← Back
-            </button>
 
             <button type="submit" className="submit-btn">
               Login
