@@ -21,14 +21,8 @@
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Image Section */
@@ -84,7 +78,7 @@
   position: relative;
 }
 
-/* ── BACK BUTTON — Desktop: absolute top-left ── */
+/* Back Button — Desktop: absolute top-left */
 .back-btn {
   position: absolute;
   top: 23px;
@@ -97,9 +91,9 @@
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 6px;
   padding: 6px 8px;
   border-radius: 8px;
+  z-index: 10;
 }
 
 .back-btn:hover {
@@ -115,9 +109,7 @@
 .register-header h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #2d3748;
   margin-bottom: 0.5rem;
-  padding-bottom: 0.3rem;
   line-height: 1.3;
   background: linear-gradient(135deg, #ff6347 0%, #ff4500 100%);
   -webkit-background-clip: text;
@@ -280,16 +272,28 @@
     max-width: 180px;
   }
 
-  /* ── KEY FIX: mobile pe back button absolute nahi, normal flow mein ── */
   .register-form-section {
-    padding: 1.5rem 1.5rem 2rem;
+    padding: 1.5rem;
+    justify-content: flex-start;
   }
 
+  /* 
+    ACTUAL FIX:
+    Mobile pe back-btn ko upar image section ke corner mein shift karo
+    ya phir form-section ke andar top pe fix raho — 
+    isliye position: absolute rakho lekin top/left mobile values pe reset karo
+  */
   .back-btn {
-    position: static;         /* absolute hata diya */
-    margin-bottom: 1rem;      /* heading se thoda gap */
-    padding: 4px 6px;
-    align-self: flex-start;   /* left side pe rahe */
+    top: 12px;
+    left: 12px;
+    font-size: 15px;
+    padding: 5px 7px;
+  }
+
+  /* Header pe top padding do taaki back button se overlap na ho */
+  .register-header {
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .register-header h1 {
