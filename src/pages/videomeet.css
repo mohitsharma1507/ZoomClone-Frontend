@@ -169,6 +169,91 @@ body {
   justify-content: center;
 }
 
+.localVideoWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  border-radius: 20px;
+  overflow: hidden;
+  display: block;
+}
+ 
+.localVideoWrapper .meetUserVideo {
+  margin: 0;
+  width: 100%;
+  border-radius: 20px;
+  display: block;
+}
+ 
+/* ── VIDEO OFF OVERLAY ── */
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  gap: 0.6rem;
+  animation: fadeInOverlay 0.25s ease;
+  pointer-events: none;
+}
+ 
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+ 
+.videoOffOverlay {
+  background: rgba(15, 15, 15, 0.82);
+  backdrop-filter: blur(6px);
+}
+ 
+.overlayIcon {
+  font-size: 2.5rem;
+  filter: grayscale(1) opacity(0.7);
+  animation: iconPulse 2s ease-in-out infinite;
+}
+ 
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1);   opacity: 0.7; }
+  50%       { transform: scale(1.1); opacity: 1;   }
+}
+ 
+.overlayLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+ 
+/* ── MUTE BADGE ── */
+.muteBadge {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(220, 38, 38, 0.88);
+  color: white;
+  padding: 0.3rem 0.7rem 0.3rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeInOverlay 0.2s ease;
+  pointer-events: none;
+}
+
 .remoteVideo {
   position: relative;
   border-radius: 16px;
@@ -183,6 +268,21 @@ body {
 .remoteVideo:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.remoteVideo .overlayLabel {
+  font-size: 0.8rem;
+}
+ 
+.remoteVideo .overlayIcon {
+  font-size: 2rem;
+}
+ 
+.remoteVideo .muteBadge {
+  bottom: 0.5rem;
+  left: 0.5rem;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem 0.25rem 0.45rem;
 }
 
 .ConferenceView video {

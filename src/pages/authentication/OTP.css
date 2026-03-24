@@ -17,6 +17,7 @@
   text-align: center;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.6s ease-out;
+  overflow: hidden;
 }
 
 @keyframes slideUp {
@@ -64,6 +65,9 @@
   gap: 0.75rem;
   justify-content: center;
   margin-bottom: 2rem;
+  flex-wrap: nowrap;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .otp-input {
@@ -185,6 +189,29 @@
 /* Mobile */
 @media (max-width: 480px) {
   .otp-card { padding: 2rem 1.5rem; }
-  .otp-input { width: 44px; height: 52px; font-size: 1.3rem; }
-  .otp-inputs { gap: 0.5rem; }
+  
+  .otp-inputs { 
+    gap: 0.4rem; 
+  }
+  
+  .otp-input { 
+    width: 40px; 
+    height: 48px; 
+    font-size: 1.2rem; 
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .otp-card { padding: 2rem 1rem; }
+
+  .otp-inputs { 
+    gap: 0.3rem; 
+  }
+
+  .otp-input { 
+    width: 34px; 
+    height: 42px; 
+    font-size: 1rem;
+  }
 }

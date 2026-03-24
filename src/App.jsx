@@ -9,6 +9,9 @@ import Home from "./pages/home";
 import { AuthProvider } from "./contexts/AuthContext";
 import History from "./pages/history";
 import OTPVerification from "./pages/authentication/OTP";
+import ForgetPassword from "./pages/authentication/ForgetPassword";
+import ResetPassword from "./pages/authentication/ResetPassword";
+import VerifyForgotPasswordOTP from "./pages/authentication/VerifyForgetOtp";
 
 function App() {
   return (
@@ -19,6 +22,12 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/verify-otp" element={<OTPVerification />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/forget-password" element={<ForgetPassword />}></Route>
+          <Route
+            path="/verify-forgot-password-otp"
+            element={<VerifyForgotPasswordOTP />}
+          />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/home" element={<Home />}></Route>
           <Route path="/history" element={<History />}></Route>
           <Route path="/:url" element={<VideoMeetComponent />}></Route>

@@ -3,16 +3,27 @@ import withAuth from "../utils/withAuth";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import Photo from "../assets/logo3.png";
+import "./home.css";
 
 function Home() {
   const navigate = useNavigate();
   const [meetingCode, setMeetingCode] = useState("");
+  const [loading, setLoading] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { addToUserHistory } = useContext(AuthContext);
 
   const handleJoinVideoCall = async () => {
-    await addToUserHistory(meetingCode);
-    navigate(`/${meetingCode}`);
+    if (!meetingCode.trim()) return;
+
+    try {
+      setLoading(true);
+      await addToUserHistory(meetingCode);
+      navigate(`/${meetingCode}`);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const closeMenu = () => setMenuOpen(false);
@@ -92,13 +103,23 @@ function Home() {
           <div className="inputRow">
             <input
               type="text"
-              placeholder="Enter Meeting Code"
+              disabled={loading}
+              placeholder="Meeting Code E.g. abc123"
               value={meetingCode}
               onChange={(e) => setMeetingCode(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleJoinVideoCall()}
+              onKeyDown={(e) =>
+                !loading && e.key === "Enter" && handleJoinVideoCall()
+              }
             />
-            <div className="ctaButton" onClick={handleJoinVideoCall}>
-              <span>JOIN</span>
+            <div
+              className="ctaButton"
+              onClick={!loading ? handleJoinVideoCall : null}
+              style={{
+                opacity: loading ? 0.7 : 1,
+                pointerEvents: loading ? "none" : "auto",
+              }}
+            >
+              {loading ? <span className="loader"></span> : <span>JOIN</span>}
             </div>
           </div>
         </div>

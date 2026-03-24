@@ -16,6 +16,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 const server_url = `${import.meta.env.VITE_API_URL}`;
+// const server_url = `http://localhost:8080`;
 const peerConfigConnections = {
   iceServers: [
     { urls: "stun:stun.l.google.com:19302" },
@@ -846,7 +847,7 @@ export default function VideoMeetComponent() {
             {!videoAvailable && (
               <div> Camera unavailable (probably in use by another tab)</div>
             )} */}
-
+          {/* 
           <video
             className="meetUserVideo"
             ref={localVideoRef}
@@ -871,8 +872,72 @@ export default function VideoMeetComponent() {
                   }}
                 ></video>
                 <div className="remoteUsername">{video.username}</div>
+              </div> */}
+
+          <div className="localVideoWrapper">
+            <video
+              className="meetUserVideo"
+              ref={localVideoRef}
+              autoPlay
+              muted
+            ></video>
+
+            {/* Video OFF overlay */}
+            {!video && (
+              <div className="videoOverlay videoOffOverlay">
+                <div className="overlayIcon">📷</div>
+                <span className="overlayLabel">Video Paused</span>
               </div>
-            ))}
+            )}
+
+            {/* Mute indicator (small badge, bottom-left) */}
+            {!audio && (
+              <div className="muteBadge">
+                <MicOffIcon style={{ fontSize: "1rem" }} />
+                <span>Muted</span>
+              </div>
+            )}
+          </div>
+
+          {/* ── REMOTE VIDEOS ── */}
+          <div className="ConferenceView">
+            {videos.map((vid) => {
+              const peerState = remoteStates[vid.socketId] || {};
+              const peerVideoOff = peerState.video === false;
+              const peerMuted = peerState.audio === false;
+
+              return (
+                <div key={vid.socketId} className="remoteVideo">
+                  <video
+                    autoPlay
+                    playsInline
+                    ref={(ref) => {
+                      if (ref && vid.stream) {
+                        ref.srcObject = vid.stream;
+                      }
+                    }}
+                  ></video>
+
+                  {/* Video OFF overlay for remote */}
+                  {peerVideoOff && (
+                    <div className="videoOverlay videoOffOverlay">
+                      <div className="overlayIcon">📷</div>
+                      <span className="overlayLabel">Video Paused</span>
+                    </div>
+                  )}
+
+                  {/* Mute badge for remote */}
+                  {peerMuted && (
+                    <div className="muteBadge">
+                      <MicOffIcon style={{ fontSize: "1rem" }} />
+                      <span>Muted</span>
+                    </div>
+                  )}
+
+                  <div className="remoteUsername">{vid.username}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

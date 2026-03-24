@@ -4,16 +4,20 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Registers from "../../assets/Register.png";
 import { FaArrowLeft } from "react-icons/fa";
-import { VscChevronLeft } from "react-icons/vsc";
+// import { VscChevronLeft } from "react-icons/vsc";
 import "./Register.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Register() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
     username: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const [errors, setErrors] = useState({
     email: "",
@@ -45,11 +49,11 @@ function Register() {
 
   const handleError = (err) =>
     toast.error(err, {
-      position: "bottom-left",
+      position: "top-left",
     });
   const handleSuccess = (msg) =>
     toast.success(msg, {
-      position: "bottom-right",
+      position: "top-right",
     });
 
   const handleSubmit = async (e) => {
@@ -68,7 +72,7 @@ function Register() {
       setErrors(newErrors);
       return;
     }
-
+    setLoading(true);
     try {
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/register`,
@@ -91,13 +95,15 @@ function Register() {
         error.response?.data?.message ||
         "Something went wrong. Please try again.";
       handleError(message);
+    } finally {
+      setLoading(false);
+      setInputValue({
+        ...inputValue,
+        email: "",
+        password: "",
+        username: "",
+      });
     }
-    setInputValue({
-      ...inputValue,
-      email: "",
-      password: "",
-      username: "",
-    });
   };
   const handleBack = () => {
     navigate("/");
@@ -156,23 +162,49 @@ function Register() {
 
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                placeholder="Enter your password"
-                onChange={handleOnChange}
-                onBlur={handleBlur}
-                className={errors.password ? "input-error" : ""}
-              />
+              <div style={{ position: "relative" }}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={password}
+                  placeholder="Enter your password"
+                  onChange={handleOnChange}
+                  onBlur={handleBlur}
+                  className={errors.password ? "input-error" : ""}
+                  style={{ width: "100%", paddingRight: "40px" }}
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    position: "absolute",
+                    right: "12px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    cursor: "pointer",
+                    color: "var(--color-text-secondary)",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {showPassword ? (
+                    <FaEyeSlash size={18} />
+                  ) : (
+                    <FaEye size={18} />
+                  )}
+                </span>
+              </div>
               {errors.password && (
                 <span className="error-message">{errors.password}</span>
               )}
             </div>
 
-            <button type="submit" className="submit-btn">
-              Create Account
+            <button type="submit" className="submit-btn" disabled={loading}>
+              {loading ? (
+                <span className="btn-loader"></span>
+              ) : (
+                "Create Account"
+              )}
             </button>
 
             <div className="login-link">
