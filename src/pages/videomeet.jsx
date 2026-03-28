@@ -45,6 +45,7 @@ export default function VideoMeetComponent() {
   const [videos, setVideos] = useState([]);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
   const [reactions, setReactions] = useState({});
   const [remoteStates, setRemoteStates] = useState({});
   const [hoveredMessage, setHoveredMessage] = useState(null);
@@ -76,9 +77,9 @@ export default function VideoMeetComponent() {
         console.log("✅ Local video element updated");
       }
 
-      if (navigator.mediaDevices.getDisplayMedia) {
-        setScreen(true);
-      }
+      // if (navigator.mediaDevices.getDisplayMedia) {
+      //   setScreen(true);
+      // }
     } catch (e) {
       console.error("❌ Error accessing media devices:", e.message);
       console.error(
@@ -116,6 +117,10 @@ export default function VideoMeetComponent() {
       connections = {};
       videoStreamsRef.current.clear();
     };
+  }, []);
+
+  useEffect(() => {
+    setIsMobile(/Android|iPhone|iPad/i.test(navigator.userAgent));
   }, []);
 
   const silence = () => {
@@ -841,9 +846,14 @@ export default function VideoMeetComponent() {
             <IconButton onClick={handleAudio}>
               {audio ? <MicIcon /> : <MicOffIcon />}
             </IconButton>
-            <IconButton onClick={handleScreen}>
+            {/* <IconButton onClick={handleScreen}>
               {screen ? <StopScreenShareIcon /> : <ScreenShareIcon />}
-            </IconButton>
+            </IconButton> */}
+            {!isMobile && (
+              <IconButton onClick={handleScreen}>
+                {screen ? <StopScreenShareIcon /> : <ScreenShareIcon />}
+              </IconButton>
+            )}
             <Badge badgeContent={newMessage} max={999} color="secondary">
               <IconButton onClick={toggleChat}>
                 <ChatIcon />
