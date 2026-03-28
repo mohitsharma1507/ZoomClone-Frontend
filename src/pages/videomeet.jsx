@@ -46,6 +46,7 @@ export default function VideoMeetComponent() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [reactions, setReactions] = useState({});
+  const [remoteStates, setRemoteStates] = useState({});
   const [hoveredMessage, setHoveredMessage] = useState(null);
   const [newMessage, setNewMessage] = useState(0);
   const EMOJI_LIST = ["👍", "❤️", "😂", "👌"];
@@ -542,6 +543,10 @@ export default function VideoMeetComponent() {
       }
     });
 
+    socketRef.current.on("media-state", (fromId, state) => {
+      setRemoteStates((prev) => ({ ...prev, [fromId]: state }));
+    });
+
     socketRef.current.on("disconnect", () => {
       console.log("🔌 Disconnected from socket server");
       for (let id in connections) {
@@ -565,13 +570,19 @@ export default function VideoMeetComponent() {
   };
 
   const handleVideo = () => {
-    console.log(`🎥 Toggling video: ${!video}`);
-    setVideo(!video);
+    const newVal = !video;
+    setVideo(newVal);
+    if (socketRef.current) {
+      socketRef.current.emit("media-state", { video: newVal, audio });
+    }
   };
 
   const handleAudio = () => {
-    console.log(`🎤 Toggling audio: ${!audio}`);
-    setAudio(!audio);
+    const newVal = !audio;
+    setAudio(newVal);
+    if (socketRef.current) {
+      socketRef.current.emit("media-state", { video, audio: newVal });
+    }
   };
 
   const handleScreen = () => {
