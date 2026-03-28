@@ -120,7 +120,11 @@ export default function VideoMeetComponent() {
   }, []);
 
   useEffect(() => {
-    setIsMobile(/Android|iPhone|iPad/i.test(navigator.userAgent));
+    const mobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(
+      navigator.userAgent,
+    );
+    const noScreenShare = !navigator.mediaDevices?.getDisplayMedia;
+    setIsMobile(mobile || noScreenShare);
   }, []);
 
   const silence = () => {
@@ -441,10 +445,7 @@ export default function VideoMeetComponent() {
 
         peer.onicecandidate = (event) => {
           if (event.candidate) {
-            console.log(
-              ` ICE candidate for ${fromId}:`,
-              event.candidate.type,
-            );
+            console.log(` ICE candidate for ${fromId}:`, event.candidate.type);
             socketRef.current.emit(
               "signal",
               fromId,
@@ -899,7 +900,7 @@ export default function VideoMeetComponent() {
             {/* <IconButton onClick={handleScreen}>
               {screen ? <StopScreenShareIcon /> : <ScreenShareIcon />}
             </IconButton> */}
-            {!isMobile && (
+            {!isMobile && navigator.mediaDevices?.getDisplayMedia && (
               <IconButton onClick={handleScreen}>
                 {screen ? <StopScreenShareIcon /> : <ScreenShareIcon />}
               </IconButton>
